@@ -607,6 +607,7 @@ protected:
 		StreamCopier::copyToString(input_manifest, manifest);
 		input_manifest.close();
 		replaceInPlace(manifest, "%APP_LABEL%"s, product_name);
+		replaceInPlace(manifest, "</activity>"s, "\n            <meta-data android:name=\"org.nvgt.capability.DIRECT_TOUCH\" android:value=\"true\" />\n        </activity>"s);
 		FileOutputStream output_manifest(Path(workplace.path()).append("AndroidManifest.xml").toString());
 		output_manifest.write(manifest.c_str(), manifest.size());
 		output_manifest.close();
